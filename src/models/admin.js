@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-// const adminSchema = new mongoose.Schema({
 const Admin = mongoose.model('Admin', {
     name: {
         type: String,
@@ -12,7 +11,5 @@ const Admin = mongoose.model('Admin', {
         required: true
     }
 });
-
-// const Admin = mongoose.model('Admin', adminSchema);
 
 module.exports = Admin;

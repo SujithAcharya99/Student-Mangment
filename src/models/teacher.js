@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 
+
+// const teacherSchema = new mongoose.Schema({
 const Teacher = mongoose.model('Teacher',{
     name: {
         type: String,
@@ -12,5 +14,7 @@ const Teacher = mongoose.model('Teacher',{
         trim: true
     }
 });
+
+// const Teacher = mongoose.model('Student', teacherSchema);
 
 module.exports = Teacher;

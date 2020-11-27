@@ -4,7 +4,6 @@
 <head>
 
     <title>Student-Management App</title>
-       <link rel="icon" href="/photo/logo.png">
      <link rel="stylesheet" href="/css/styles.css">
     
 
@@ -12,22 +11,21 @@
 <body>
        <div class="main-content">
          {{>header}}
-                 <form action="/login" method="POST">
-                    <label >Email </label>
-                    <input id="email" type="text" name="email" placeholder="email" required>
-                    <label >Password </label>
-                    <input id="password" type="text" name="password" placeholder="password" required>
-
-                    <button type="submit" >SUBMIT</button>
-                </form>
-    <h1>Sign up</h1>
-                 <form action="/signup" method="POST">
+    <h1>Create New Teacher</h1>
+                 <form action="/teacher" method="POST">
                     <label >Name</label>
                     <input id="name" type="text" name="name" placeholder="Name" required>
                     <label >Email </label>
                     <input id="email" type="text" name="email" placeholder="email" required>
                     <label >Password </label>
                     <input id="password" type="text" name="password" placeholder="password" required>
+                     <label >age </label>
+                    <input id="age" type="text" name="age" placeholder="age" required>
+                    <label >roll </label>
+                    <input id="roll" type="text" name="roll" placeholder="roll" required>
+                   
+                    <label >Subject Taught </label>
+                    <input id="Subject" type="text" name="subjects_taught" placeholder="Subject" required>
 
                     <button type="submit" >SUBMIT</button>
                 </form>

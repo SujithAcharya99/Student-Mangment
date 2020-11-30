@@ -11,16 +11,20 @@
 <body>
        <div class="main-content">
          {{>header}}
-    <h1>Edit User</h1>
-                 <form action="/user/edit/{{user.id}}" method="POST">
+    <h1>Edit Student</h1>
+                 <form action="/student/edit/{{student.id}}" method="POST">
                     <label >Name</label>
-                    <input id="name" type="text" name="name" value={{user.name}}   >
+                    <input id="name" type="text" name="name" value={{student.name}}  required >
                     <label >Email </label>
-                    <input id="email" type="text" name="email" value={{user.email}} required>
+                    <input id="email" type="text" name="email" value={{student.email}} required>
                     <label >roll </label>
-                    <input id="roll" type="text" name="roll" value="{{user.roll}}" required>
+                    <input id="roll" type="text" name="roll" value="{{student.roll}}" required>
                     <label >age </label>
-                    <input id="age" type="text" name="age" value={{user.age}} required>
+                    <input id="age" type="text" name="age" value={{student.age}} required>
+
+                    <label >Subject </label>
+                    <input id="Subject" type="text" name="subject" placeholder="Subject" value={{student.subject}} required>
+
 
                     <button type="submit" >SUBMIT</button>
                 </form>

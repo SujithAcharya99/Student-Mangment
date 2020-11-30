@@ -14,15 +14,15 @@
     <h1>Create New Student</h1>
                  <form action="/student" method="POST">
                     <label >Name</label>
-                    <input id="name" type="text" name="name" placeholder="Name" required>
+                    <input id="name" type="text" name="name" placeholder="Name" value={{student.name}}  required>
                     <label >Email </label>
-                    <input id="email" type="text" name="email" placeholder="email" required>
+                    <input id="email" type="text" name="email" placeholder="email" value={{student.email}}  required>
                     <label >Password </label>
                     <input id="password" type="text" name="password" placeholder="password" required>
                     <label >Roll </label>
-                    <input id="roll" type="text" name="roll" placeholder="roll" required>
+                    <input id="roll" type="text" name="roll" placeholder="roll" value={{student.roll}}  required>
                     <label >Age </label>
-                    <input id="age" type="text" name="age" placeholder="age" required>
+                    <input id="age" type="text" name="age" placeholder="age" value={{student.age}}  required>
                     <label >Subject </label>
                     <input id="age" type="text" name="subject" placeholder="age" required>
 

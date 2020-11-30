@@ -21,20 +21,21 @@
         <tr>
             <th>Full Name</th>
             <th>Email</th>
-            <th>roll</th>
-            <th>age</th>
-            <th></th>
+            <th>Roll</th>
+            <th>Age</th>
+            <th>Subject</th>
         </tr>
     </thead>
     <tbody>
 
-        {{#each user}}
+        {{#each student}}
         
         <tr>
             <td>{{this.name}}</td>
             <td>{{this.email}}</td>
             <td>{{this.roll}}</td>
             <td>{{this.age}}</td> 
+            <td>{{this.subject}}</td> 
         </tr>
         {{/each}}
         

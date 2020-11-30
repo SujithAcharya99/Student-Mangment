@@ -10,12 +10,10 @@ const bodyparser = require('body-parser');
 const { title } = require('process');
 const router = new express.Router();
 
-// app.use(express.json());
 router.use(bodyparser.urlencoded({
     extended: true
 }));
 
-// app.set('views', viewsPath);
 
 router.get('/', async (req, res) => {
     res.render('index',{
@@ -35,30 +33,12 @@ router.get('/test', async (req, res) => {
  
 })
 
-// app.get('/test2', async (req, res) => {
-//     res.render('test2',{
-//         title : 'Login Page',
-//         body : 'Sujith S'
-//     });
- 
-// })
-
-
-
 router.get('/about', (req, res) => {
     res.render('about',{
         title : 'About Me',
         name : 'Sujith S'
     });
 })
-
-// app.post('/test', async (req, res) => {
-
-//     const email = await req.body;
-
-//     console.log(email);
-//   res.send('success')
-// })
 
 //************************Login*****************88*8 */
 router.get('/login', (req, res) => {
@@ -69,34 +49,6 @@ router.get('/login', (req, res) => {
 
 
  router.post('/login', async (req, res) => {
-
-//     console.log('inside router', req);
-
-//     res.send(req.body);
-//     // try {
-    //     // const email = req.body.email;
-    //     // console.log(email)
-    //     const admin = await Admin.findOne({email: req.body.email, password: req.body.password});
-    //     if (admin) {
-           
-    //         return res.send('welcome admin');
-    //     }
-        
-    //     const user = await User.findOne({email: req.body.email, password: req.body.password});
-    //     // const token = await user.generateAuToken();
-    //     if (!user) {
-    //         return  res.send({
-    //             error : 'worng credentials'
-    //         })
-    //     } else {
-    //         // res.send(user);
-    //         res.redirect('/users');
-
-    //     }
-        
-    // } catch (e) {
-    //     res.status(400).send();
-    // }
     try {
         
         const admin = await Admin.findOne({email: req.body.email, password: req.body.password});
@@ -132,16 +84,7 @@ router.get('/login', (req, res) => {
                 
             });
          }
-        //  console.log(user)
-        //  res.send({ user, token });
-    //     Us.find({}, {}, function(e, docs) {
-
-    //         res.render('user-list', {'userlist' : docs});
-
-    //   });
-      
-        //res.send(user.roll);
-        // res.redirect('/user')
+    
         }
     } catch (e) {
         res.status(400).send();
@@ -194,21 +137,6 @@ router.post('/users/logoutAll', auth, async (req, res) => {
     }
 });
 
-//************************user not assigned Page********* */
-
-// app.get('/user', (req, res) => {
-//     // const name = new User.findOne({email: req.body.email})
-//     // console.log(res.send(req.user));
-//     res.render('/notAssigned',{
-//         title : 'Home Page',
-//         user: 'user',
-//         message : 'Pls wait for Admin to assigned'
-//      });
-
-// })
-
-
-
 router.get('/user/me', auth, async (req, res) => {
     console.log('inside /users')
     res.send(req.user);
@@ -222,9 +150,7 @@ router.get('/admin/dashboard', async (req, res) => {
     const userTeacher = await User.find({roll: 'teacher'});
      const teacher = await Teacher.find({});
     const user = await User.find({roll: 'not assigned'});
-    // console.log( userTeacher.name,  userTeacher.email,  userTeacher.roll, userTeacher.age, userTeacher.password)
 
-//     const teacher = new Student(userTeacher)
 console.log(userTeacher[0])
 
     res.render('adminDashboard',{
@@ -235,10 +161,8 @@ console.log(userTeacher[0])
 })
 });
 
-
 router.post('/admin', (req, res) => {
     
-
   const admin = new Admin(req.body)
 
 
@@ -330,18 +254,6 @@ router.get('/teacher/userEdit/:id', async (req, res) => {
 });
 
 router.get('/teacherUserList', async (req, res) => {
-    // const user = await User.find({roll:'not assigned'});
-
-    // if (!user) {
-    //     return res.student(400).send() 
-    // } else if (user.length === 0) {
-    //     return alert("no data found");
-    // }
-    //  else {
-    // res.render('teacherUserList', {
-    //     user,
-    //     name:'Sujith S'
-    // })}
     await User.find({roll:'not assigned'}).then((user) => {
         if (!user) {
             return res.student(400).send() 
@@ -374,15 +286,8 @@ router.post('/teacher/userEdit/:id', async (req, res) => {
     }
 // console.log('validation oki')
     try {
-    //    const user = await User.findOneAndUpdate(email, req.body, { new : true, runValidators: true});
-     const user = await User.findOneAndUpdate({ _id }, req.body, { new: true })
-    //    const user = await User.findById(_id);
-    // console.log(user)
-       
+     const user = await User.findOneAndUpdate({ _id }, req.body, { new: true })     
        updates.forEach((update) => user[update] = req.body[update])
-
-    //    await req.user.save();
-
         if (!user) {
             return res.status(404).send();
         }
@@ -417,7 +322,6 @@ router.get('/user/delete/:id', async (req, res) => {
     console.log(_id)
 
     try {
-        // const user = await User.findByIdAndDelete(req.user._id);
         const user = await User.findById(_id);
         console.log(user)
         if (!user) {
@@ -444,10 +348,6 @@ router.get('/user/edit/:id', async (req, res) => {
         user
     })
 })
-
-// router.patch('/users/:id', async (req, res) => {
-
-    // router.patch('/users/me', auth, async (req, res) => {
 router.post('/user/edit/:id', async (req, res) => {
         // console.log(req.body);
         const _id = req.params.id;
@@ -462,12 +362,8 @@ router.post('/user/edit/:id', async (req, res) => {
         if (!isValidUpdate) {
             return res.status(404).send({ error : 'Invalid Update...!'})
         }
-    // console.log('validation oki')
         try {
-        //    const user = await User.findOneAndUpdate(email, req.body, { new : true, runValidators: true});
          const user = await User.findOneAndUpdate({ _id }, req.body, { new: true })
-        //    const user = await User.findById(_id);
-        // console.log(user)
            
            updates.forEach((update) => user[update] = req.body[update])
     
@@ -484,13 +380,6 @@ router.post('/user/edit/:id', async (req, res) => {
         }
     })
 
-    // app.get('/users', (req, res) => {   
-//     User.find({}).then((user) => {
-//         res.send(user);
-//     }).catch((e) => {
-//         res.status(500).send(e);
-//     })
-// });
 
 //***********************HELP******************** */
 router.get('/help', (req, res) =>{
